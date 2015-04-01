@@ -108,6 +108,37 @@ var list = hash.get( key, true );
 ```
 
 
+#### hash.keys( [opts] )
+
+Returns a list of hash __keys__.
+
+``` javascript
+var keys = hash.keys();
+// returns ['abp','abr','abt','act',...]
+```
+
+The method accepts the following `options`:
+
+*	__min__: minimum number of anagrams.
+* 	__max__: maximum number of anagrams.
+
+To return `keys` having at least a `min` number of anagrams, set the `min` option.
+
+``` javascript
+var keys = hash.keys({ 'min': 2 });
+// returns ['abt','moot']
+```
+
+To return `keys` having at most a `max` number of anagrams, set the `max` option.
+
+``` javascript
+var keys = hash.keys({ 'max': 1 });
+// returns ['abp','abr','act','adp',...]
+```
+
+
+
+
 #### hash.merge( hash1[, hash2,...,hashN] )
 
 Merges [anagram](http://en.wikipedia.org/wiki/Anagram) hash tables into the current anagram hash instance.

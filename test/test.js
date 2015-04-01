@@ -87,6 +87,130 @@ describe( 'compute-anagram-hash', function tests() {
 		}
 	});
 
+	describe( 'hash#keys', function tests() {
+
+		it( 'should provide a method to get the hash keys', function test() {
+			expect( hash.keys ).to.be.a( 'function' );
+		});
+
+		it( 'should throw an error if provided a non-object', function test() {
+			var values = [
+				5,
+				null,
+				undefined,
+				NaN,
+				true,
+				'5',
+				[],
+				function(){}
+			];
+
+			for ( var i = 0; i < values.length; i++ ) {
+				expect( badValue( values[i] ) ).to.throw( TypeError );
+			}
+			function badValue( value ) {
+				return function() {
+					hash.keys( value );
+				};
+			}
+		});
+
+		it( 'should throw an error if provided a min option which is not a positive integer', function test() {
+			var values = [
+				'5',
+				Math.PI,
+				-1,
+				0,
+				null,
+				undefined,
+				NaN,
+				true,
+				{},
+				[],
+				function(){}
+			];
+
+			for ( var i = 0; i < values.length; i++ ) {
+				expect( badValue( values[i] ) ).to.throw( TypeError );
+			}
+			function badValue( value ) {
+				return function() {
+					hash.keys({ 'min': value });
+				};
+			}
+		});
+
+		it( 'should throw an error if provided a max option which is not a positive integer', function test() {
+			var values = [
+				'5',
+				Math.PI,
+				-1,
+				0,
+				null,
+				undefined,
+				NaN,
+				true,
+				{},
+				[],
+				function(){}
+			];
+
+			for ( var i = 0; i < values.length; i++ ) {
+				expect( badValue( values[i] ) ).to.throw( TypeError );
+			}
+			function badValue( value ) {
+				return function() {
+					hash.keys({ 'max': value });
+				};
+			}
+		});
+
+		it( 'should return a list of keys', function test() {
+			var hash, actual, expected;
+
+			hash = createHash( ['oof','woot'] );
+
+			actual = hash.keys();
+			expected = ['foo','ootw'];
+
+			assert.deepEqual( actual, expected );
+		});
+
+		it( 'should return a list of keys having a minimum number of associated anagrams', function test() {
+			var hash, actual, expected;
+
+			hash = createHash( ['oof','woot','foo','beep'] );
+
+			actual = hash.keys({ 'min': 2 });
+			expected = ['foo'];
+
+			assert.deepEqual( actual, expected );
+		});
+
+		it( 'should return a list of keys having a maximum number of associated anagrams', function test() {
+			var hash, actual, expected;
+
+			hash = createHash( ['beep','oof','woot','foo'] );
+
+			actual = hash.keys({ 'max': 1 });
+			expected = ['beep', 'ootw'];
+
+			assert.deepEqual( actual, expected );
+		});
+
+		it( 'should return an empty array if no keys meet criteria', function test() {
+			var hash, actual, expected;
+
+			hash = createHash( ['oof','woot','foo','beep'] );
+
+			actual = hash.keys({ 'min': 999 });
+			expected = [];
+
+			assert.deepEqual( actual, expected );
+		});
+
+	}); // end TESTS keys
+
 	describe( 'hash#get', function tests() {
 
 		it( 'should provide a method to return a list of anagrams', function test() {
