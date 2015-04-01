@@ -81,7 +81,7 @@ list = hash.get( 'beep' );
 // returns null
 ```
 
-If the input `string` is a hash __key__, set the `key` flag to `true`. When provided a hash __key__, the method returns all anagrams associated with a particular key (possibly including the key itself).
+If the input `string` is a hash __key__, set the `key` flag to `true`. When provided a hash __key__, the method returns all anagrams associated with a particular __key__ (possibly including the __key__ itself).
 
 ``` javascript
 var list = hash.get( 'abt', true );
