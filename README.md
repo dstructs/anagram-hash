@@ -108,7 +108,7 @@ var list = hash.get( key, true );
 ```
 
 
-#### hash.merge( hash[, hash,...,hash] )
+#### hash.merge( hash1[, hash2,...,hashN] )
 
 Merges [anagram](http://en.wikipedia.org/wiki/Anagram) hash tables into the current anagram hash instance.
 
