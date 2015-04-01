@@ -54,7 +54,7 @@ The hash table has the following methods...
 
 
 
-##### hash.push( str[, str,...,str] )
+#### hash.push( str[, str,...,str] )
 
 Add `strings` to the anagram hash table.
 
@@ -63,7 +63,7 @@ hash.push( 'dog', 'rad', 'super' );
 ```
 
 
-##### hash.get( [str] )
+#### hash.get( [str] )
 
 Returns a list of anagrams. If provided an input `string`, the method returns a list of corresponding anagrams from the hash table; otherwise, the method returns all anagram lists. If no anagrams exist, the method returns `null`.
 
