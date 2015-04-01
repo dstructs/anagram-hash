@@ -56,7 +56,7 @@ The hash table has the following methods...
 
 #### hash.push( str[, str,...,str] )
 
-Add `strings` to the anagram hash table.
+Add `strings` to the [anagram](http://en.wikipedia.org/wiki/Anagram) hash table.
 
 ``` javascript
 hash.push( 'dog', 'rad', 'super' );
@@ -65,7 +65,7 @@ hash.push( 'dog', 'rad', 'super' );
 
 #### hash.get( [str[, key]] )
 
-Returns a list of anagrams. If provided an input `string`, the method returns a list of corresponding anagrams from the hash table; otherwise, the method returns all anagram lists. If no anagrams exist, the method returns `null`.
+Returns a list of [anagrams](http://en.wikipedia.org/wiki/Anagram). If provided an input `string`, the method returns a list of corresponding anagrams from the hash table; otherwise, the method returns all anagram lists. If no anagrams exist, the method returns `null`.
 
 ``` javascript
 // Get all anagrams:
@@ -80,7 +80,7 @@ list = hash.get( 'beep' );
 // returns null
 ```
 
-If the `string` is a hash key, set the `key` flag to `true`. When provided a hash __key__, the method returns all anagrams associated with a particular key (including possibly the key itself).
+If the `string` is a hash __key__, set the `key` flag to `true`. When provided a hash __key__, the method returns all anagrams associated with a particular key (including possibly the key itself).
 
 ``` javascript
 var list = hash.get( 'abt', true );
