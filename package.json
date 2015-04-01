@@ -41,6 +41,7 @@
     "url": "https://github.com/compute-io/anagram-hash/issues"
   },
   "dependencies": {
+    "validate.io-boolean-primitive": "^1.0.0",
     "validate.io-string-primitive": "^1.0.0",
     "validate.io-string-primitive-array": "^1.0.0"
   },

@@ -111,6 +111,28 @@ describe( 'compute-anagram-hash', function tests() {
 			}
 		});
 
+		it( 'should throw an error if provided a non-boolean key flag', function test() {
+			var values = [
+				5,
+				null,
+				undefined,
+				NaN,
+				'5',
+				{},
+				[],
+				function(){}
+			];
+
+			for ( var i = 0; i < values.length; i++ ) {
+				expect( badValue( values[i] ) ).to.throw( TypeError );
+			}
+			function badValue( value ) {
+				return function() {
+					hash.get( 'beep', value );
+				};
+			}
+		});
+
 		it( 'should return all anagrams', function test() {
 			var actual, expected;
 
@@ -127,6 +149,25 @@ describe( 'compute-anagram-hash', function tests() {
 			expected = ['tab'];
 
 			assert.deepEqual( actual, expected );
+
+			actual = hash.get( 'bat', false );
+			expected = ['tab'];
+
+			assert.deepEqual( actual, expected );
+		});
+
+		it( 'should return all anagrams associated with a key', function test() {
+			var actual, expected;
+
+			actual = hash.get( 'abt', true );
+			expected = ['bat','tab'];
+
+			assert.deepEqual( actual, expected );
+
+			actual = hash.get( 'beep', true );
+			expected = ['beep'];
+
+			assert.deepEqual( actual, expected );
 		});
 
 		it( 'should return null if the hash does not contain any anagram sets', function test() {
@@ -135,6 +176,7 @@ describe( 'compute-anagram-hash', function tests() {
 			assert.isNull( hash.get() );
 			assert.isNull( hash.get( 'bat' ) );
 			assert.isNull( hash.get( 'beep' ) );
+			assert.isNull( hash.get( 'abcdef', true ) );
 		});
 
 	}); // end TESTS get
