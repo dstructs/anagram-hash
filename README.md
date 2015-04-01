@@ -1,8 +1,8 @@
-anagram-hash
+Anagram Hash
 ===
 [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Coverage Status][coveralls-image]][coveralls-url] [![Dependencies][dependencies-image]][dependencies-url]
 
-> Creates a hash table of anagrams from a string array.
+> [Anagram](http://en.wikipedia.org/wiki/Anagram) hash table.
 
 
 ## Installation
@@ -17,18 +17,88 @@ For use in the browser, use [browserify](https://github.com/substack/node-browse
 ## Usage
 
 ``` javascript
-var foo = require( 'compute-anagram-hash' );
+var createHash = require( 'compute-anagram-hash' );
 ```
 
-#### foo( arr )
+#### createHash( [arr] )
 
-What does this function do?
+Creates an [anagram](http://en.wikipedia.org/wiki/Anagram) hash table.
+
+``` javascript
+var hash = createHash();
+```
+
+To initialize the hash table, provided a `string array`.
+
+``` javascript
+var arr = [
+	'beep',
+	'boop',
+	'bop',
+	'bap',
+	'foo',
+	'bar',
+	'cat',
+	'bat',
+	'moot',
+	'woot',
+	'moto',
+	'tab',
+	'pad'
+];
+
+var hash = createHash( arr );
+```
+
+The hash table has the following methods...
+
+
+
+##### hash.push( str[, str,...,str] )
+
+Add `strings` to the anagram hash table.
+
+``` javascript
+hash.push( 'dog', 'rad', 'super' );
+```
+
+
+##### hash.get( [str] )
+
+Returns a list of anagrams. If provided an input `string`, the method returns a list of corresponding anagrams from the hash table; otherwise, the method returns all anagram lists. If no anagrams exist, the method returns `null`.
+
+``` javascript
+// Get all anagrams:
+var lists = hash.get();
+// returns [['moot','moto'],['bat','tab']]
+
+// Get anagrams corresponding to a particular string:
+var list = hash.get( 'moot' );
+// returns ['moto']
+
+list = hash.get( 'beep' );
+// returns null
+``` 
+
+
 
 
 ## Examples
 
 ``` javascript
-var foo = require( 'compute-anagram-hash' );
+var createHash = require( 'compute-anagram-hash' );
+
+// Load a string array containing tokenized words:
+var words = require( './words.json' );
+
+// Create a new hash:
+var hash = createHash( words );
+
+// Get all anagram lists:
+var lists = hash.get();
+
+// Get a single anagram list:
+var list = hash.get( 'rome' );
 ```
 
 To run the example code from the top-level application directory,

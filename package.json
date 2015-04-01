@@ -1,7 +1,7 @@
 {
   "name": "compute-anagram-hash",
   "version": "0.0.0",
-  "description": "Creates a hash table of anagrams from a string array.",
+  "description": "Anagram hash table.",
   "author": {
     "name": "Athan Reines",
     "email": "kgryte@gmail.com"
@@ -25,12 +25,25 @@
   "keywords": [
     "compute.io",
     "compute",
-    "computation"
+    "computation",
+    "nlp",
+    "data structure",
+    "hash",
+    "table",
+    "anagram",
+    "language",
+    "words",
+    "tokens",
+    "strings",
+    "array"
   ],
   "bugs": {
     "url": "https://github.com/compute-io/anagram-hash/issues"
   },
-  "dependencies": {},
+  "dependencies": {
+    "validate.io-string-primitive": "^1.0.0",
+    "validate.io-string-primitive-array": "^1.0.0"
+  },
   "devDependencies": {
     "chai": "2.x.x",
     "mocha": "2.x.x",
