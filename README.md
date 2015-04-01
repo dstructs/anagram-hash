@@ -44,7 +44,8 @@ var arr = [
 	'woot',
 	'moto',
 	'tab',
-	'pad'
+	'pad',
+	'Shakespeare is awesome!'
 ];
 
 var hash = createHash( arr );
