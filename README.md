@@ -108,6 +108,24 @@ var list = hash.get( key, true );
 ```
 
 
+#### hash.merge( hash[, hash,...,hash] )
+
+Merges [anagram](http://en.wikipedia.org/wiki/Anagram) hash tables into the current anagram hash instance.
+
+``` javascript
+var mhash1, mhash2;
+
+mhash1 = createHash( ['yes','no'] );
+mhash2 = createHash( ['beep','bepe'] );
+
+hash.merge( mhash1, mhash2 );
+
+var list = hash.get( 'beep', true );
+// returns ['beep','bepe']
+```
+
+
+
 
 ## Examples
 

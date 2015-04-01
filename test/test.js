@@ -1,4 +1,4 @@
-/* global require, describe, it */
+/* global require, describe, it, beforeEach */
 'use strict';
 
 // MODULES //
@@ -22,7 +22,9 @@ describe( 'compute-anagram-hash', function tests() {
 
 	// SETUP //
 
-	var words = [
+	var words, hash;
+
+	words = [
 		'beep',
 		'boop',
 		'bop',
@@ -39,7 +41,9 @@ describe( 'compute-anagram-hash', function tests() {
 		'bat'
 	];
 
-	var hash = createHash( words );
+	beforeEach( function before() {
+		hash = createHash( words );
+	});
 
 
 	// TESTS //
@@ -266,5 +270,80 @@ describe( 'compute-anagram-hash', function tests() {
 		});
 
 	}); // end TESTS push
+
+	describe( 'hash#merge', function tests() {
+
+		it( 'should provide a method to merge hashes', function test() {
+			expect( hash.merge ).to.be.a( 'function' );
+		});
+
+		it( 'should throw an error if provided anything other than AnagramHash instances', function test() {
+			var values = [
+				'5',
+				5,
+				null,
+				undefined,
+				NaN,
+				true,
+				{},
+				[],
+				function(){},
+				new Function(),
+				new Date(),
+				new RegExp()
+			];
+
+			for ( var i = 0; i < values.length; i++ ) {
+				expect( badValue( values[i] ) ).to.throw( TypeError );
+			}
+			function badValue( value ) {
+				return function() {
+					hash.merge( value );
+				};
+			}
+		});
+
+		it( 'should merge hashes', function test() {
+			var mhash, actual, expected;
+
+			mhash = createHash( ['yes', 'no', 'beep', 'bepe' ] );
+
+			hash.merge( mhash );
+
+			// Previously non-existing key:
+			actual = hash.get( 'no', true );
+			expected = ['no'];
+
+			assert.deepEqual( actual, expected );
+
+			// Previously existing key:
+			actual = hash.get( 'beep', true );
+			expected = ['beep', 'bepe'];
+
+			assert.deepEqual( actual, expected );
+		});
+
+		it( 'should merge multiple hashes', function test() {
+			var mhash1, mhash2, actual, expected;
+
+			mhash1 = createHash( ['yes', 'no' ] );
+			mhash2 = createHash( ['beep', 'bepe' ] );
+
+			hash.merge( mhash1, mhash2 );
+
+			// Previously non-existing key:
+			actual = hash.get( 'no', true );
+			expected = ['no'];
+
+			assert.deepEqual( actual, expected );
+
+			// Previously existing key:
+			actual = hash.get( 'beep', true );
+			expected = ['beep', 'bepe'];
+
+			assert.deepEqual( actual, expected );
+		});
+
+	}); // end TESTS merge
 
 });
