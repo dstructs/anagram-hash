@@ -163,8 +163,8 @@ Copies an [anagram](http://en.wikipedia.org/wiki/Anagram) hash table to a new ha
 ``` javascript
 var copy = hash.copy();
 
-var list = copy.get( 'beep', true );
-// returns ['beep','bepe']
+var list = copy.get( 'abt', true );
+// returns ['bat','tab']
 ```
 
 To only copy specific __keys__ to a new hash table, provide a __keys__ `array`.
