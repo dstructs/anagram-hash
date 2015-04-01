@@ -156,6 +156,27 @@ var list = hash.get( 'beep', true );
 ```
 
 
+#### hash.copy( [keys] )
+
+Copies an [anagram](http://en.wikipedia.org/wiki/Anagram) hash table to a new hash table instance.
+
+``` javascript
+var copy = hash.copy();
+
+var list = copy.get( 'beep', true );
+// returns ['beep','bepe']
+```
+
+To only copy specific __keys__ to a new hash table, provide a __keys__ `array`.
+
+``` javascript
+var copy = hash.copy( ['beep'] );
+
+var keys = copy.keys();
+// returns ['beep']
+```
+
+
 
 
 ## Examples

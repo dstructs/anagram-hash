@@ -470,4 +470,87 @@ describe( 'compute-anagram-hash', function tests() {
 
 	}); // end TESTS merge
 
+	describe( 'hash#copy', function tests() {
+
+		it( 'should provide a method to copy a hash to a new hash instance', function test() {
+			expect( hash.copy ).to.be.a( 'function' );
+		});
+
+		it( 'should throw an error if provided a first argument which is not a primitive string array', function test() {
+			var values = [
+				'5',
+				5,
+				null,
+				undefined,
+				NaN,
+				true,
+				{},
+				[],
+				function(){},
+				['a',null],
+				['a',1],
+				['a',new String( 'b' )]
+			];
+
+			for ( var i = 0; i < values.length; i++ ) {
+				expect( badValue( values[i] ) ).to.throw( TypeError );
+			}
+			function badValue( value ) {
+				return function() {
+					hash.copy( value );
+				};
+			}
+		});
+
+		it( 'should copy the hash to a new hash instance', function test() {
+			var copy, keys1, keys2;
+
+			copy = hash.copy();
+
+			assert.ok( copy instanceof createHash );
+
+			keys1 = hash.keys();
+			keys2 = copy.keys();
+
+			assert.deepEqual( keys1, keys2 );
+
+			hash.push( 'some RANDOM string' );
+
+			keys1 = hash.keys();
+			keys2 = copy.keys();
+
+			assert.notDeepEqual( keys1, keys2 );
+		});
+
+		it( 'should copy only the specified keys to a new hash instance', function test() {
+			var copy, actual, expected;
+
+			copy = hash.copy( ['abt'] );
+
+			// Keys:
+			actual = copy.keys();
+			expected = [ 'abt' ];
+
+			assert.deepEqual( actual, expected, 'keys' );
+
+			// Anagrams:
+			actual = copy.get( 'abt', true );
+			expected = ['bat','tab'];
+
+			assert.deepEqual( actual, expected, 'anagrams' );
+		});
+
+		it( 'should return an empty hash if no keys exist in the copied hash', function test() {
+			var copy, actual, expected;
+
+			copy = hash.copy( ['zba'] );
+
+			actual = copy.keys();
+			expected = [];
+
+			assert.deepEqual( actual, expected );
+		});
+
+	}); // end TESTS copy
+
 });
