@@ -139,6 +139,45 @@ describe( 'compute-anagram-hash', function tests() {
 
 	}); // end TESTS get
 
+	describe( 'hash#getKey', function tests() {
+
+		it( 'should provide a method to create a hash key', function test() {
+			expect( hash.getKey ).to.be.a( 'function' );
+		});
+
+		it( 'should throw an error if provided a non-string', function test() {
+			var values = [
+				5,
+				null,
+				undefined,
+				NaN,
+				true,
+				{},
+				[],
+				function(){}
+			];
+
+			for ( var i = 0; i < values.length; i++ ) {
+				expect( badValue( values[i] ) ).to.throw( TypeError );
+			}
+			function badValue( value ) {
+				return function() {
+					hash.getKey( value );
+				};
+			}
+		});
+
+		it( 'should return an alphagram', function test() {
+			var actual, expected;
+
+			actual = hash.getKey( 'tab' );
+			expected = 'abt';
+
+			assert.strictEqual( actual, expected );
+		});
+
+	}); // end TESTS getKey
+
 	describe( 'hash#push', function tests() {
 
 		it( 'should provide a method to add strings to the hash', function test() {

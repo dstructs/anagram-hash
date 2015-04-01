@@ -28,7 +28,7 @@ Creates an [anagram](http://en.wikipedia.org/wiki/Anagram) hash table.
 var hash = createHash();
 ```
 
-To initialize the hash table, provided a `string array`.
+To initialize the hash table, provide a `string array`.
 
 ``` javascript
 var arr = [
@@ -70,7 +70,7 @@ Returns a list of anagrams. If provided an input `string`, the method returns a 
 ``` javascript
 // Get all anagrams:
 var lists = hash.get();
-// returns [['moot','moto'],['bat','tab']]
+// returns [['bat','tab'],['moot','moto']]
 
 // Get anagrams corresponding to a particular string:
 var list = hash.get( 'moot' );
@@ -78,8 +78,20 @@ var list = hash.get( 'moot' );
 
 list = hash.get( 'beep' );
 // returns null
-``` 
+```
 
+__Note__: when return all anagram lists, the list order is __not__ guaranteed. 
+
+
+
+#### hash.getKey( str )
+
+Hashing function. Converts an input `string` to an [alphagram](http://en.wikipedia.org/wiki/Alphagram).
+
+``` javascript
+var key = hash.getKey( 'tab' );
+// returns 'abt'
+```
 
 
 
