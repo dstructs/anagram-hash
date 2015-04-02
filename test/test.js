@@ -346,6 +346,15 @@ describe( 'compute-anagram-hash', function tests() {
 			assert.strictEqual( actual, expected );
 		});
 
+		it( 'should remove any non-alphanumeric characters', function test() {
+			var actual, expected;
+
+			actual = hash.getKey( '$^ t a_ b 10  ' );
+			expected = '01abt';
+
+			assert.strictEqual( actual, expected );
+		});
+
 	}); // end TESTS getKey
 
 	describe( 'hash#push', function tests() {

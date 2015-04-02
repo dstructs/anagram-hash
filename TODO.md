@@ -1,7 +1,7 @@
 TODO
 ====
 
-1. 
+1. **multi-key** `get`
 2. `toJSON` method
 	-	serialize hash
 	-	retain keys

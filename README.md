@@ -107,6 +107,8 @@ var list = hash.get( key, true );
 // returns ['bat','tab']
 ```
 
+__Note__: the returned __key__ only contains lowercase `alphanumeric` characters.
+
 
 #### hash.keys( [opts] )
 
