@@ -1,6 +1,6 @@
 {
   "name": "compute-anagram-hash",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Anagram hash table.",
   "author": {
     "name": "Athan Reines",
