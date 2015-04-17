@@ -262,4 +262,3 @@ Copyright &copy; 2015. Athan Reines.
 
 [github-issues-image]: http://img.shields.io/github/issues/compute-io/anagram-hash.svg
 [github-issues-url]: https://github.com/compute-io/anagram-hash/issues
-
